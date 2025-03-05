@@ -11,13 +11,13 @@ It will have the below file structure under the new VectorDB folder.
     ```
     third-parties
     |__<Vector_DB>
-    |__deployment
-    |  |__docker_compose
-    |     |__compose.yaml
-    |     |__<Vector_DB>.yaml
-    |__src
-        |__ __init__.py
-        |__README.md
+       |__deployment
+       |  |__docker_compose
+       |     |__compose.yaml
+       |     |__<Vector_DB>.yaml
+       |__src
+          |__ __init__.py
+          |__README.md
     ```
 
     compose.yaml details the required configuration for the VectorDB
@@ -34,7 +34,7 @@ It will have the below file structure under the new VectorDB folder.
     Make sure the Vector database setup is complete, and you can start the database server on a port. <br>
 
 ## Dataprep
-Customized dataprep microservice for &lt;Vector\_DB&gt; in opea-project/GenAIComps/comps/dataprep.<br> 
+Customized dataprep microservice for <Vector_DB> in opea-project/GenAIComps/comps/dataprep.<br> 
 It will have the below file structure under the dataprep folder.
 
     ```
@@ -53,11 +53,11 @@ It will have the below file structure under the dataprep folder.
 
     compose.yaml details the required configuration for the VectorDB
 
-    &lt;Vector\_DB&gt;.yaml add Vector\_DB parameters for K8
+    <Vector_DB>.yaml add Vector_DB parameters for K8
 
     README.md adds details to enable VectorDB on Kubernetes cluster
 
-    &lt;Vector\_DB&gt;.py should inherit the below classes and provide definition for the methods
+    <Vector_DB>.py should inherit the below classes and provide definition for the methods
     ```
     OpeaDataprepLoader
         invoke() 
@@ -75,14 +75,14 @@ It will have the below file structure under the dataprep folder.
         get_videos() 
         delete_files()
     ```
-    README_&lt;Vector\_DB&gt;.md details the steps to start the dataprep microservice with the VectorDB
+    README_<Vector_DB>.md details the steps to start the dataprep microservice with the VectorDB
     along with validation.<br>
 
-    Following is the outline of README_&lt;Vector\_DB&gt;.md <br>
+    Following is the outline of README_<Vector_DB>.md <br>
 
-### Dataprep Microservice with &lt;Vector\_DB&gt;
+### Dataprep Microservice with <Vector_DB>
 
-####	Start the &lt;Vector\_DB&gt; server
+####	Start the <Vector_DB> server
 
         This will be detailed in GenAIComps/comps/third_parties/<Vector_DB>/src/README.md
         Provide link here.
@@ -122,7 +122,7 @@ It will have the below file structure under the dataprep folder.
         curl -X POST -H "Content-Type: application/json" -d '{"path":"/path/to/document"}' http://localhost:6007/v1/dataprep/ingest
 
 ## Retrievers
-Customized Retriever microservice for &lt;Vector\_DB&gt; in opea-project/GenAIComps/comps/retrievers.<br>
+Customized Retriever microservice for <Vector_DB> in opea-project/GenAIComps/comps/retrievers.<br>
 It will have the below file structure under the retrievers folder
 
     ```
@@ -139,28 +139,28 @@ It will have the below file structure under the retrievers folder
     |  |__<Vector_DB>.py
     |__README_<Vector_DB>.md
     ```
-    compose.yaml - Add retriever configuration specific to &lt;Vector\_DB&gt;
+    compose.yaml - Add retriever configuration specific to <Vector_DB>
 
-    &lt;VectorDB&gt;-values.yaml adds VectorDB parameters for K8
+    <Vector_DB>-values.yaml adds VectorDB parameters for K8
 
-    README.md adds details to enable VvectorDB on Kubernetes cluster
+    README.md adds details to enable VectorDB on Kubernetes cluster
 
     config.py adds VectorDB specific environment variables
 
-    &lt;Vector\_DB&gt;.py registers the VectorDB retriever component and provides definition for
+    <Vector_DB>.py registers the VectorDB retriever component and provides definition for
     ```
         __initialize_embedder() 
         __initialize_client() 
         check_health() 
         invoke()
     ```
-    README_&lt;VectorDB&gt;.md details the steps to start the retriever microservice with the VectorDB along with validation.<br>
+    README_<Vector_DB>.md details the steps to start the retriever microservice with the VectorDB along with validation.<br>
 
-    Following is the outline of README_&lt;VectorDB&gt;.md <br>
+    Following is the outline of README_<Vector_DB>.md <br>
 
-### Retriever Microservice with &lt;Vector\_DB&gt;
+### Retriever Microservice with <Vector_DB>
 
-####	Start the &lt;Vector\_DB&gt; server 
+####	Start the <Vector_DB> server 
 
         This will be detailed in GenAIComps/comps/third_parties/<Vector_DB>/src/README.md
         Provide link here.
@@ -217,7 +217,7 @@ The OPEA sub-project [GenAIExamples](https://github.com/opea-project/GenAIExampl
 
 ## Add new VectorDB to ChatQnA Example
 
-This deployment section covers how to add a new Vvector DB to ChatQnA example with OPEA comps. Here we will be showcasing  how to build an (end-to-end) e2e CchatQnA with a new VectorDB.
+This deployment section covers how to add a new Vvector DB to ChatQnA example with OPEA comps. Here we will be showcasing  how to build an (end-to-end) e2e ChatQnA with a new VectorDB.
 
 ### Overview
 
@@ -302,7 +302,7 @@ README_<Vector_DB>.md adds details to start the Mega service of ChatQnA on Xeon 
 
 README_<Vector_DB>.md adds details to start the Mega service of ChatQnA on Gaudi in respective folders.
 
-Following are the contents of README_&lt;Vector_DB&gt;.md <br>
+Following are the contents of README_<Vector_DB>.md <br>
 
 ### Build Mega Service of ChatQnA (with VectorDB)
 
@@ -598,7 +598,7 @@ Test files to create - below examples give a skeleton for test files.
 
 ## Tests for Xeon
 
-test\_compose_&lt;Vector\_DB&gt;_on_xeon.sh
+test_compose_<Vector_DB>_on_xeon.sh
 	
     build_docker_images()
             echo "Building Docker Images...."
