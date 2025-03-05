@@ -113,7 +113,9 @@ The architecture follows a series of steps to process user queries and generate 
 Customize with new VectorDB
 ===========================
 
-Adding a new VectorDB to OPEA involves minimal changes to OPEA sub-project `GenAI Components <https://github.com/opea-project/GenAIComps>`_ that covers installation, launch, usage, and tests. For more details, please refer to the following document:
+Adding a new VectorDB to OPEA involves minimal changes to OPEA sub-project `GenAI Components <https://github.com/opea-project/GenAIComps>`_ that covers installation, launch, usage, and tests.
+
+For more details, please refer to the following document:
 
 .. toctree::
    :maxdepth: 1
