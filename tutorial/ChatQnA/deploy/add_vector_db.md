@@ -1,11 +1,12 @@
 # Customize with new VectorDB
 
-Adding a new VectorDB to OPEA involves minimal changes to OPEA sub-project [GenAIComps](https://github.com/opea-project/GenAIComps) that covers installation, launch, usage, and tests. <br>
+Adding a new VectorDB to OPEA involves minimal changes to OPEA sub-project [GenAIComps](https://github.com/opea-project/GenAIComps) that covers installation, launch, usage, and tests. 
 
-The changes are distributed in 3 components:<br>
+The changes are distributed in 3 components:
 
 ## Third_parties
-The new VectorDB should be setup in opea-project/GenAIComps/comps/third_parties. <br>
+The new VectorDB should be setup in opea-project/GenAIComps/comps/third_parties. 
+
 It will have the below file structure under the new VectorDB folder.
 
     ```
@@ -24,17 +25,18 @@ It will have the below file structure under the new VectorDB folder.
 
     <Vector_DB>.yaml details corresponding parameters for VectorDB 
 
-    README.md details the setup to bring the server up.<br>
+    README.md details the setup to bring the server up.
 
     This third-party Vector database setup should be described in README.md file under:
-    GenAIComps/comps/third_parties/<Vector_ DB>/src <br>
+    GenAIComps/comps/third_parties/<Vector_ DB>/src 
     
-    Following is the outline of README.md <br>
+    Following is the outline of README.md 
 
-    Make sure the Vector database setup is complete, and you can start the database server on a port. <br>
+    Make sure the Vector database setup is complete, and you can start the database server on a port.
 
 ## Dataprep
-Customized dataprep microservice for <Vector_DB> in opea-project/GenAIComps/comps/dataprep.<br> 
+Customized dataprep microservice for <Vector_DB> in opea-project/GenAIComps/comps/dataprep.
+
 It will have the below file structure under the dataprep folder.
 
     ```
@@ -76,9 +78,9 @@ It will have the below file structure under the dataprep folder.
         delete_files()
     ```
     README_<Vector_DB>.md details the steps to start the dataprep microservice with the VectorDB
-    along with validation.<br>
+    along with validation.
 
-    Following is the outline of README_<Vector_DB>.md <br>
+    Following is the outline of README_<Vector_DB>.md 
 
 ### Dataprep Microservice with <Vector_DB>
 
@@ -107,7 +109,7 @@ It will have the below file structure under the dataprep folder.
     
 ##### Run Docker with CLI (Option A)
             
-        docker run -d --name="dataprep-<Vector-_DB>-server" -p 6007:6007 --ipc=host -e http_proxy=$http_proxy -e \ https_proxy=$https_proxy -e no_proxy=$no_proxy -e TEI_EMBEDDING_ENDPOINT=${TEI_EMBEDDING_ENDPOINT} -e \ <Vector_DB>_HOST=$<Vector_DB>_HOST -e HUGGINGFACEHUB_API_TOKEN=${HUGGINGFACEHUB_API_TOKEN} -e \ DATAPREP_COMPONENT_NAME="OPEA_DATAPREP_<Vector_DB>" opea/dataprep:latest
+        docker run -d --name="dataprep-<Vector_DB>-server" -p 6007:6007 --ipc=host -e http_proxy=$http_proxy -e  https_proxy=$https_proxy -e no_proxy=$no_proxy -e TEI_EMBEDDING_ENDPOINT=${TEI_EMBEDDING_ENDPOINT} -e <Vector_DB>_HOST=$<Vector_DB>_HOST -e HUGGINGFACEHUB_API_TOKEN=${HUGGINGFACEHUB_API_TOKEN} -e  DATAPREP_COMPONENT_NAME="OPEA_DATAPREP_<Vector_DB>" opea/dataprep:latest
         
 #####	Run with Docker Compose (Option B)
         
@@ -122,7 +124,8 @@ It will have the below file structure under the dataprep folder.
         curl -X POST -H "Content-Type: application/json" -d '{"path":"/path/to/document"}' http://localhost:6007/v1/dataprep/ingest
 
 ## Retrievers
-Customized Retriever microservice for <Vector_DB> in opea-project/GenAIComps/comps/retrievers.<br>
+Customized Retriever microservice for <Vector_DB> in opea-project/GenAIComps/comps/retrievers.
+
 It will have the below file structure under the retrievers folder
 
     ```
@@ -154,9 +157,9 @@ It will have the below file structure under the retrievers folder
         check_health() 
         invoke()
     ```
-    README_<Vector_DB>.md details the steps to start the retriever microservice with the VectorDB along with validation.<br>
+    README_<Vector_DB>.md details the steps to start the retriever microservice with the VectorDB along with validation.
 
-    Following is the outline of README_<Vector_DB>.md <br>
+    Following is the outline of README_<Vector_DB>.md 
 
 ### Retriever Microservice with <Vector_DB>
 
@@ -168,7 +171,7 @@ It will have the below file structure under the retrievers folder
 ####	Build Docker Image
 
         cd GenAIComps/
-        docker build -t opea/retriever:latest --build-arg https\_proxy=$https\_proxy --build-arg http\_proxy=$http\_proxy -f comps/retrievers/src/Dockerfile .
+        docker build -t opea/retriever:latest --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy -f comps/retrievers/src/Dockerfile .
 
 ####	Setup Environment Variables
 
@@ -184,13 +187,13 @@ It will have the below file structure under the retrievers folder
 
 #####	Run Docker with CLI (Option A)
 
-        docker run -d --name="retriever-<Vector_DB>-server" -p 7000:7000 --ipc=host -e http_proxy=$http_proxy -e  \ https_proxy=$https_proxy -e no_proxy=$no_proxy -e TEI_EMBEDDING_ENDPOINT=${your_embedding_endpoint} \ 
-        -e MILVUS_HOST=${your_milvus_host_ip} -e HUGGINGFACEHUB_API_TOKEN=${your_hf_api_token} -e \ RETRIEVER_COMPONENT_NAME=$RETRIEVER_COMPONENT_NAME opea/retriever:latest
+        docker run -d --name="retriever-<Vector_DB>-server" -p 7000:7000 --ipc=host -e http_proxy=$http_proxy -e  https_proxy=$https_proxy -e no_proxy=$no_proxy -e TEI_EMBEDDING_ENDPOINT=${your_embedding_endpoint}  
+        -e MILVUS_HOST=${your_milvus_host_ip} -e HUGGINGFACEHUB_API_TOKEN=${your_hf_api_token} -e RETRIEVER_COMPONENT_NAME=$RETRIEVER_COMPONENT_NAME opea/retriever:latest
 
 #####	Run Docker with Docker Compose (Option B)
 
         cd ../deployment/docker_compose
-        export service_name="retriever-<Vector-_DB>"
+        export service_name="retriever-<Vector_DB>"
         docker compose -f compose.yaml up ${service_name} -d
 
 
@@ -198,17 +201,17 @@ It will have the below file structure under the retrievers folder
 
 #### Check Service Status
 
-        curl http://localhost:7000/v1/health\_check \
+        curl http://localhost:7000/v1/health_check \
         -X GET \
         -H 'Content-Type: application/json'
 
-    Make sure there is data in the Vector\_DB. You could verify data is stored in Vector\_DB using dataprep microservice. Example is ingesting Nike\_2023 Revenue file. (Note: We need to add link to the file).
+    Make sure there is data in the Vector_DB. You could verify data is stored in Vector_DB using dataprep microservice. Example is ingesting Nike_2023 Revenue file. (Note: We need to add link to the file).
 
-    #### Validation
+#### Validation
 
-        curl http://${your\_ip}:7000/v1/retrieval \
+        curl http://${your_ip}:7000/v1/retrieval \
         -X POST \
-        -d "{\"text\":\"What is the revenue of Nike in 2023?\",\"embedding\":${your\_embedding}}" \
+        -d "{\"text\":\"What is the revenue of Nike in 2023?\",\"embedding\":${your_embedding}}" \
         -H 'Content-Type: application/json'
 
 # Customize the VectorDB for the ChatQnA Example
@@ -217,11 +220,11 @@ The OPEA sub-project [GenAIExamples](https://github.com/opea-project/GenAIExampl
 
 ## Add new VectorDB to ChatQnA Example
 
-This deployment section covers how to add a new Vvector DB to ChatQnA example with OPEA comps. Here we will be showcasing  how to build an (end-to-end) e2e ChatQnA with a new VectorDB.
+This deployment section covers how to add a new Vector DB to ChatQnA example with OPEA comps. Here we will be showcasing  how to build an (end-to-end) e2e ChatQnA with a new VectorDB.
 
 ### Overview
 
-There are several ways to setup a ChatQnA use case with different VectorDBs. Here in this tutorial, we will walk through how to enable a new VvectorDB with the below list of microservices from OPEA:
+There are several ways to setup a ChatQnA use case with different VectorDBs. Here in this tutorial, we will walk through how to enable a new VectorDB with the below list of microservices from OPEA:
 GenAIComps to setup a ChatQnA.
 ```
 1. Data Prep
@@ -302,7 +305,7 @@ README_<Vector_DB>.md adds details to start the Mega service of ChatQnA on Xeon 
 
 README_<Vector_DB>.md adds details to start the Mega service of ChatQnA on Gaudi in respective folders.
 
-Following are the contents of README_<Vector_DB>.md <br>
+Following are the contents of README_<Vector_DB>.md 
 
 ### Build Mega Service of ChatQnA (with VectorDB)
 
@@ -389,6 +392,7 @@ cd ..
 #### Build MegaService Docker Image
 Option 1. MegaService with Rerank
     To construct the Mega Service with Rerank, we utilize the [GenAIComps](https://github.com/opea-project/GenAIComps.git) microservice pipeline within the `chatqna.py` Python script. Build MegaService Docker image via below command:
+
     ```bash
     git clone https://github.com/opea-project/GenAIExamples.git
     cd GenAIExamples/ChatQnA
@@ -397,6 +401,7 @@ Option 1. MegaService with Rerank
 
 Option 2. MegaService without Rerank
     To construct the Mega Service without Rerank, we utilize the [GenAIComps](https://github.com/opea-project/GenAIComps.git) microservice pipeline within the `chatqna_without_rerank.py` Python script. Build MegaService Docker image via below command:
+
     ```bash
     git clone https://github.com/opea-project/GenAIExamples.git
     cd GenAIExamples/ChatQnA
@@ -405,6 +410,7 @@ Option 2. MegaService without Rerank
 
 #### Build UI Docker Image
 Build frontend Docker image via below command:
+
 ```bash
 cd GenAIExamples/ChatQnA/ui
 docker build --no-cache -t opea/chatqna-ui:latest --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy -f ./docker/Dockerfile .
@@ -412,13 +418,14 @@ docker build --no-cache -t opea/chatqna-ui:latest --build-arg https_proxy=$https
 
 #### Build Conversational React UI Docker Image (Optional)
 Build frontend Docker image that enables Conversational experience with ChatQnA megaservice via below command:
-**Export the value of the public IP address of your Xeon server to the `host_ip` environment variable**
+
 ```bash
 cd GenAIExamples/ChatQnA/ui
 docker build --no-cache -t opea/chatqna-conversation-ui:latest --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy -f ./docker/Dockerfile.react .
 ```
 
 #### Build Nginx Docker Image
+
 ```bash
 cd GenAIComps
 docker build -t opea/nginx:latest --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy -f comps/third_parties/nginx/src/Dockerfile .
@@ -464,6 +471,7 @@ For users in China who are unable to download models directly from Huggingface, 
 
 #### Setup Environment Variables
 1. Set the required environment variables:
+
     ```bash
     # Example: host_ip="192.168.1.1"
     export host_ip="External_Public_IP"
@@ -473,6 +481,7 @@ For users in China who are unable to download models directly from Huggingface, 
     ```
 
 2. If you are in a proxy environment, also set the proxy-related environment variables:
+
     ```bash
     export http_proxy="Your_HTTP_Proxy"
     export https_proxy="Your_HTTPs_Proxy"
@@ -481,17 +490,20 @@ For users in China who are unable to download models directly from Huggingface, 
     ```
 
 3. Set up other environment variables:
+
    ```bash
    source ./set_env.sh
    ```
 
-#### Start all the services Docker Containers
+#### Start all the services 
 > Before running the docker compose command, you need to be in the folder that has the docker compose yaml file
+
     ```bash
     cd GenAIExamples/ChatQnA/docker_compose/intel/cpu/xeon/
     ```
 
 > Start ChatQnA with Rerank Pipeline
+
     ```bash
     docker compose -f compose_<vectorDB>.yaml up -d
     ```
@@ -502,6 +514,7 @@ Note, when verify the microservices by curl or API from remote client, please ma
 Follow the instructions to validate MicroServices.
 
 #### TEI Embedding Service
+
    ```bash
     curl ${host_ip}:6006/embed \
        -X POST \
@@ -510,9 +523,9 @@ Follow the instructions to validate MicroServices.
    ```
 
 ####  Retriever Microservice
-   To consume the retriever microservice, you need to generate a mock embedding vector by Python script. The length of embedding vector is determined by the embedding model. <br>
-   Here we use the model `EMBEDDING_MODEL_ID="BAAI/bge-base-en-v1.5"`, which vector size is 768.<br>
+   To consume the retriever microservice, you need to generate a mock embedding vector by Python script. The length of embedding vector is determined by the embedding model. Here we use the model `EMBEDDING_MODEL_ID="BAAI/bge-base-en-v1.5"`, which vector size is 768.
    Check the vector dimension of your embedding model, set `your_embedding` dimension equals to it. 
+
    ```bash
    export your_embedding=$(python3 -c "import random; embedding = [random.uniform(-1, 1) for _ in range(768)]; print(embedding)")
    curl http://${host_ip}:7000/v1/retrieval \
@@ -523,6 +536,7 @@ Follow the instructions to validate MicroServices.
 
 ####  TEI Reranking Service
    Skip for ChatQnA without Rerank pipeline
+
    ```bash
     curl http://${host_ip}:8808/rerank \
        -X POST \
@@ -532,6 +546,7 @@ Follow the instructions to validate MicroServices.
 
 ####  LLM backend Service
    In the first startup, this service will take more time to download, load and warm up the model. After it's finished, the service will be ready. Try the command below to check whether the LLM serving is ready.
+
    ```bash
    docker logs vllm-service 2>&1 | grep complete
    ```
@@ -541,6 +556,7 @@ Follow the instructions to validate MicroServices.
    INFO: Application startup complete.
    ```
    Then try the `cURL` command below to validate services.
+
    ```bash
     curl http://${host_ip}:9009/v1/chat/completions \
         -X POST \
@@ -549,6 +565,7 @@ Follow the instructions to validate MicroServices.
    ```
 
 ####  MegaService
+
    ```bash
     curl http://${host_ip}:8888/v1/chatqna -H "Content-Type: application/json" -d '{
           "messages": "What is the revenue of Nike in 2023?"
@@ -556,6 +573,7 @@ Follow the instructions to validate MicroServices.
    ```
 
 ####  Nginx Service
+
    ```bash
     curl http://${host_ip}:${NGINX_PORT}/v1/chatqna \
        -H "Content-Type: application/json" \
@@ -592,8 +610,9 @@ To delete the files/link you uploaded:
         -H "Content-Type: application/json"
 ```
 
-# Tests for ChatqnA with <Vector_DB> 
+# Tests for ChatQnA with new VectorDB 
 This should go under  GenAIExamples/ChatQnA/tests
+
 Test files to create - below examples give a skeleton for test files.
 
 ## Tests for Xeon
