@@ -14,6 +14,10 @@ VideoQnA is a framework that retrieves video based on provided user prompt. It u
 Purpose
 *******
 
+* Efficient Search: Utilizes video embeddings for accurate and efficient retrieval.
+* Long-form Video Support: Capable of handling extensive video archives and time-based searches.
+* Microservice Architecture: Built on GenAIComps, incorporating microservices for embedding, retrieval, reranking, and language model integration.
+
 How It Works
 ************
 
